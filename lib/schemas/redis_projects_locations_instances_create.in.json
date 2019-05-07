@@ -1,0 +1,144 @@
+{
+    "type": "object",
+    "properties": {
+        "instanceId": {
+            "type": "string"
+        },
+        "parent": {
+            "required": true,
+            "type": "string"
+        },
+        "alt": {
+            "type": "string",
+            "enum": [
+                "json",
+                "media",
+                "proto"
+            ],
+            "default": "json"
+        },
+        "callback": {
+            "type": "string"
+        },
+        "fields": {
+            "type": "string"
+        },
+        "key": {
+            "type": "string"
+        },
+        "oauth_token": {
+            "type": "string"
+        },
+        "prettyPrint": {
+            "type": "boolean",
+            "default": true
+        },
+        "quotaUser": {
+            "type": "string"
+        },
+        "uploadType": {
+            "type": "string"
+        },
+        "upload_protocol": {
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A Google Cloud Redis instance.",
+            "properties": {
+                "alternativeLocationId": {
+                    "description": "Optional. Only applicable to STANDARD_HA tier which protects the instance\nagainst zonal failures by provisioning it across two zones. If provided, it\nmust be a different zone from the one provided in [location_id].",
+                    "type": "string"
+                },
+                "authorizedNetwork": {
+                    "description": "Optional. The full name of the Google Compute Engine\n[network](/compute/docs/networks-and-firewalls#networks) to which the\ninstance is connected. If left unspecified, the `default` network\nwill be used.",
+                    "type": "string"
+                },
+                "createTime": {
+                    "description": "Output only. The time the instance was created.",
+                    "format": "google-datetime",
+                    "type": "string"
+                },
+                "currentLocationId": {
+                    "description": "Output only. The current zone where the Redis endpoint is placed. For Basic\nTier instances, this will always be the same as the [location_id]\nprovided by the user at creation time. For Standard Tier instances,\nthis can be either [location_id] or [alternative_location_id] and can\nchange after a failover event.",
+                    "type": "string"
+                },
+                "displayName": {
+                    "description": "An arbitrary and optional user-provided name for the instance.",
+                    "type": "string"
+                },
+                "host": {
+                    "description": "Output only. Hostname or IP address of the exposed Redis endpoint used by\nclients to connect to the service.",
+                    "type": "string"
+                },
+                "labels": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Resource labels to represent user provided metadata",
+                    "type": "object"
+                },
+                "locationId": {
+                    "description": "Optional. The zone where the instance will be provisioned. If not provided,\nthe service will choose a zone for the instance. For STANDARD_HA tier,\ninstances will be created across two zones for protection against zonal\nfailures. If [alternative_location_id] is also provided, it must be\ndifferent from [location_id].",
+                    "type": "string"
+                },
+                "memorySizeGb": {
+                    "description": "Required. Redis memory size in GiB.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "Required. Unique name of the resource in this scope including project and\nlocation using the form:\n    `projects/{project_id}/locations/{location_id}/instances/{instance_id}`\n\nNote: Redis instances are managed and addressed at regional level so\nlocation_id here refers to a GCP region; however, users may choose which\nspecific zone (or collection of zones for cross-zone instances) an instance\nshould be provisioned in. Refer to [location_id] and\n[alternative_location_id] fields for more details.",
+                    "type": "string"
+                },
+                "port": {
+                    "description": "Output only. The port number of the exposed Redis endpoint.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "redisConfigs": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Optional. Redis configuration parameters, according to\nhttp://redis.io/topics/config. Currently, the only supported parameters\nare:\n\n *   maxmemory-policy\n *   notify-keyspace-events",
+                    "type": "object"
+                },
+                "redisVersion": {
+                    "description": "Optional. The version of Redis software.\nIf not provided, latest supported version will be used. Updating the\nversion will perform an upgrade/downgrade to the new version. Currently,\nthe supported values are `REDIS_3_2` for Redis 3.2.",
+                    "type": "string"
+                },
+                "reservedIpRange": {
+                    "description": "Optional. The CIDR range of internal addresses that are reserved for this\ninstance. If not provided, the service will choose an unused /29 block,\nfor example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique\nand non-overlapping with existing subnets in an authorized network.",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "Output only. The current state of this instance.",
+                    "enum": [
+                        "STATE_UNSPECIFIED",
+                        "CREATING",
+                        "READY",
+                        "UPDATING",
+                        "DELETING",
+                        "REPAIRING",
+                        "MAINTENANCE",
+                        "FAILING_OVER"
+                    ],
+                    "type": "string"
+                },
+                "statusMessage": {
+                    "description": "Output only. Additional information about the current status of this\ninstance, if available.",
+                    "type": "string"
+                },
+                "tier": {
+                    "description": "Required. The service tier of the instance.",
+                    "enum": [
+                        "TIER_UNSPECIFIED",
+                        "BASIC",
+                        "STANDARD_HA"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
